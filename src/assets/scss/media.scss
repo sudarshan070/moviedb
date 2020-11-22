@@ -1,0 +1,9 @@
+@media only screen and (max-width: 760px) {
+  .movie-list-container {
+    padding-top: 3rem;
+    .single-movie {
+      width: 80% !important;
+      margin: 0 auto;
+    }
+  }
+}
