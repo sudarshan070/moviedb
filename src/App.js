@@ -1,17 +1,15 @@
-import { Genre } from './components/Genre';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header'
-import MovieList from './components/MovieList';
+import Landing from './components/Landing';
+import MovieDetail from './components/MovieDetail';
 
 function App() {
   return (
-    <div className="App">
+    < BrowserRouter>
       <Header />
-      <div className='d-flex'>
-        <Genre />
-        <MovieList />
-      </div>
-
-    </div>
+      <Route exact path='/' component={Landing} />
+      <Route path='/movie/:id' component={MovieDetail} />
+    </BrowserRouter>
   );
 }
 

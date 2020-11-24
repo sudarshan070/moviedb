@@ -12,7 +12,6 @@ export function Genre() {
           `${baseURL}/genre/movie/list?api_key=${API_KEY}`
         );
         const { genres } = genre.data;
-        console.log(genres, "genre is here");
         setGenre(genres);
       } catch (error) {
         console.log(error);
@@ -22,10 +21,16 @@ export function Genre() {
   }, []);
 
   return (
-    <div>
+    <div className="mt-5">
       {genres ? (
-        genres.map((genre) => {
-          return <ul>{<li>{genre.name}</li>}</ul>;
+        genres.map((genre, i) => {
+          return (
+            <div key={i}>
+              <button className="btn btn-outline-secondary my-3">
+                {genre.name}
+              </button>
+            </div>
+          );
         })
       ) : (
         <div> Loading... </div>

@@ -23,6 +23,7 @@ body {
   background: #062541;
   padding: 0.7rem 0;
   width: 100%;
+  top: 0;
   h1 {
     font-size: 24px;
   }
@@ -46,6 +47,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     background: #546e7a;
-    color: #ffffff;
+    color: #ffffff !important;
   }
 }
