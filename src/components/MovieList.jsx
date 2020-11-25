@@ -25,7 +25,7 @@ export default function MovieList() {
 
   return (
     <div>
-      <List popularMovie={popularMovie} />
+      <List movieList={popularMovie} />
     </div>
   );
 }

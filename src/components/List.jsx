@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Rating from "./Rating";
 
-export default function List({ popularMovie }) {
+export default function List({ movieList }) {
   return (
     <div className="d-flex flex-wrap movie-list-container container-xl">
-      {popularMovie ? (
-        popularMovie.map((movie, i) => {
+      {movieList ? (
+        movieList.map((movie, i) => {
           let { poster_path, title, vote_average, id } = movie;
           return (
             <NavLink
