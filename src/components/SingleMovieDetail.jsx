@@ -1,7 +1,8 @@
 import React from "react";
+import { NavLink, withRouter } from "react-router-dom";
 import Rating from "./Rating";
 
-export default function SingleMovieDetail({ movieDetail, credits }) {
+function SingleMovieDetail({ movieDetail, credits }) {
   console.log(movieDetail, "movieDetail");
   return (
     <>
@@ -50,9 +51,9 @@ export default function SingleMovieDetail({ movieDetail, credits }) {
           <h3>Top Billed Cast</h3>
           <div>
             {credits
-              ? credits.cast.map((cast) => {
+              ? credits.cast.map((cast, i) => {
                   return (
-                    <div>
+                    <div key={i}>
                       <img
                         src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                         alt=""
@@ -64,6 +65,12 @@ export default function SingleMovieDetail({ movieDetail, credits }) {
                 })
               : ""}
           </div>
+          <NavLink
+            to={`/movie/${movieDetail.id}/cast`}
+            style={{ textDecoration: "none" }}
+          >
+            Full Cast & Crew
+          </NavLink>
         </div>
         <div>
           <div>
@@ -88,3 +95,5 @@ export default function SingleMovieDetail({ movieDetail, credits }) {
     </>
   );
 }
+
+export default withRouter(SingleMovieDetail);
