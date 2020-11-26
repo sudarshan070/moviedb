@@ -40,9 +40,12 @@ export default function MovieDetail() {
   }, [id]);
 
   return (
-    <div className="pt-5">
+    <div className="container-xl p-top-7">
       <SingleMovieDetail movieDetail={movieDetail} credits={credits} />
-      <List movieList={movieList} />
+      <div>
+        <h3 className="title-lg pt-5">Recommendations</h3>
+        <List movieList={movieList} />
+      </div>
     </div>
   );
 }

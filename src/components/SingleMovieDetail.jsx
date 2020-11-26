@@ -1,98 +1,127 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
+import Loader from "./Loading";
 import Rating from "./Rating";
 
 function SingleMovieDetail({ movieDetail, credits }) {
   console.log(movieDetail, "movieDetail");
   return (
     <>
-      {console.log(credits)}
       {movieDetail ? (
-        <div className="d-flex">
-          <img
-            className="movie-poser"
-            src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
-            alt=""
-          />
-          <div>
-            <p>{movieDetail.title}</p>
-            <div>
-              <small>{movieDetail.release_date}</small>
+        <div className="d-flex align-items-center">
+          <div className="single-movie-poster">
+            <img
+              className="movie-poser"
+              src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
+              alt=""
+            />
+          </div>
+
+          <div className="pl-5">
+            <p className="title-lg">{movieDetail.title}</p>
+            <div className="text-secondary">
+              <small className="pr-1">{movieDetail.release_date}</small>
 
               {movieDetail.production_countries.map((countries, i) => (
-                <small key={i}>{countries.iso_3166_1}</small>
+                <small className="pr-4" key={i}>
+                  ({countries.iso_3166_1})
+                </small>
               ))}
 
               {movieDetail.genres.map((genre, i) => (
-                <small key={i}>{genre.name}</small>
+                <small className="pr-2" key={i}>
+                  •{genre.name}
+                </small>
               ))}
-              <small>
+              <small className="pl-4">
                 {Math.floor(movieDetail.runtime / 60) +
                   "h" +
                   (movieDetail.runtime % 60) +
                   "m"}
               </small>
             </div>
-            <div>
+            <div className="d-flex align-items-center py-3">
               <Rating number={movieDetail.vote_average / 2} />
-              <span>{movieDetail.vote_average / 2}</span>
+              <span className="pl-3">{movieDetail.vote_average / 2}</span>
             </div>
-            <h3>{movieDetail.tagline}</h3>
-            <h2>overview</h2>
+            <h3 className="movie-tagline text-secondary">
+              {movieDetail.tagline}
+            </h3>
+            <h2 style={{ fontSize: "1.5rem" }}>overview</h2>
             <p>{movieDetail.overview}</p>
             <p></p>
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
-      <div className="d-flex">
+      <div className="d-flex pt-5">
         <div>
-          <h3>Top Billed Cast</h3>
-          <div>
+          <h3 className="title-lg">Top Billed Cast</h3>
+          <div className="d-flex cast-container">
             {credits
               ? credits.cast.map((cast, i) => {
                   return (
-                    <NavLink
-                      to={`/person/${cast.id}`}
-                      key={i}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-                        alt=""
-                      />
-                      <h3>{cast.name}</h3>
-                      <p>{cast.character}</p>
-                    </NavLink>
+                    <div className="profile-card shadow-sm mx-2 my-1 border rounded">
+                      <NavLink
+                        to={`/person/${cast.id}`}
+                        key={i}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="profile-img ">
+                          <img
+                            className="rounded"
+                            src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                            alt={cast.name}
+                          />
+                        </div>
+                        <div className="p-2">
+                          <h3 className="cast-name">{cast.name}</h3>
+                          <p className="text-secondary">{cast.character}</p>
+                        </div>
+                      </NavLink>
+                    </div>
                   );
                 })
               : ""}
           </div>
-          <NavLink
-            to={`/movie/${movieDetail.id}/cast`}
-            style={{ textDecoration: "none" }}
-          >
-            Full Cast & Crew
-          </NavLink>
+          <div className="mt-4 ml-2 ">
+            <NavLink
+              to={`/movie/${movieDetail.id}/cast`}
+              style={{
+                textDecoration: "none",
+                color: "#100",
+                fontSize: "1.25rem",
+              }}
+            >
+              👉🏻  Full Cast & Crew
+            </NavLink>
+          </div>
         </div>
-        <div>
-          <div>
-            <h3>Status</h3> <p>{movieDetail.status}</p>
+        <div className="pl-5 pt-3">
+          <div className="pb-3">
+            <h3 className="cast-name">Status</h3>
+            <p className="text-secondary">{movieDetail.status}</p>
           </div>
-          <div>
-            <h3>Original Language</h3> <p>{movieDetail.original_language}</p>
+          <div className="pb-3">
+            <h3 className="cast-name">Original Language</h3>
+            <p className="text-secondary">{movieDetail.original_language}</p>
           </div>
-          <div>
-            <h3>Budget</h3>
-            <p>{movieDetail.budget > 0 ? movieDetail.budget : "-"}</p>
+          <div className="pb-3">
+            <h3 className="cast-name">Budget</h3>
+            <p className="text-secondary">
+              {movieDetail.budget > 0 ? movieDetail.budget : "-"}
+            </p>
           </div>
-          <div>
-            <h3>Revenue </h3>
-            <p>{movieDetail.revenue > 0 ? movieDetail.revenue : "-"}</p>
+          <div className="pb-3">
+            <h3 className="cast-name">Revenue </h3>
+            <p className="text-secondary">
+              {movieDetail.revenue > 0 ? movieDetail.revenue : "-"}
+            </p>
           </div>
-          <div>
-            <h3> Keywords</h3> <p>{movieDetail.status}</p>
+          <div className="pb-3">
+            <h3 className="cast-name"> Keywords</h3>
+            <p className="text-secondary">{movieDetail.status}</p>
           </div>
         </div>
       </div>

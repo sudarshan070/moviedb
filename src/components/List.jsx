@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Loader from "./Loading";
 import Rating from "./Rating";
 
 export default function List({ movieList }) {
@@ -29,7 +30,7 @@ export default function List({ movieList }) {
           );
         })
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
     </div>
   );

@@ -52,7 +52,7 @@ export default function Person() {
               </div>
               <div>
                 <p>Known Credit</p>
-                <h3></h3>
+                <h3>h</h3>
               </div>
               <div>
                 <p>Gender</p>
@@ -68,11 +68,11 @@ export default function Person() {
               </div>
               <div>
                 <p>Also Known as</p>
-                {person.also_known_as.map((known, i) => {
+                {/* {person.also_known_as.map((known, i) => {
                   return <h3 key={i}>{known}</h3>;
-                })}
+                })} */}
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       }
