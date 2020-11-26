@@ -53,14 +53,18 @@ function SingleMovieDetail({ movieDetail, credits }) {
             {credits
               ? credits.cast.map((cast, i) => {
                   return (
-                    <div key={i}>
+                    <NavLink
+                      to={`/person/${cast.id}`}
+                      key={i}
+                      style={{ textDecoration: "none" }}
+                    >
                       <img
                         src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                         alt=""
                       />
                       <h3>{cast.name}</h3>
                       <p>{cast.character}</p>
-                    </div>
+                    </NavLink>
                   );
                 })
               : ""}

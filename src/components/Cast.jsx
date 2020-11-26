@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
+import { useParams, NavLink } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 
 export default function Cast() {
@@ -33,7 +34,12 @@ export default function Cast() {
           {casts
             ? casts.cast.map((cast, i) => {
                 return (
-                  <div key={i} className="d-flex">
+                  <NavLink
+                    to={`/person/${cast.id}`}
+                    key={i}
+                    className="d-flex"
+                    style={{ textDecoration: "none" }}
+                  >
                     <img
                       src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                       alt={cast.name}
@@ -42,7 +48,7 @@ export default function Cast() {
                       <h3>{cast.name}</h3>
                       <p>{cast.character}</p>
                     </div>
-                  </div>
+                  </NavLink>
                 );
               })
             : ""}
@@ -59,7 +65,7 @@ export default function Cast() {
                     />
                     <div>
                       <h3>{crew.name}</h3>
-                      <p>{crew.character}</p>
+                      <p>{crew.department}</p>
                     </div>
 
                     <p></p>
