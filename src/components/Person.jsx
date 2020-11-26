@@ -23,7 +23,7 @@ export default function Person() {
           `${baseURL}/discover/movie?api_key=${API_KEY}&with_cast=${id}&sort_by=popularity.desc`
         );
         const personMovie = personMovies.data.results;
-        console.log(personMovie, "personMovie is here");
+        console.log(personMovies, "personMovie is here");
         setPersonMovie(personMovie);
       } catch (error) {
         console.log(error);
@@ -32,51 +32,74 @@ export default function Person() {
     return fetchCastData();
   }, [id]);
   return (
-    <div className="pt-5">
+    <div className="p-top-7">
       {
-        <div className="d-flex">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-            alt={person.name}
-          />
-          <div>
-            <h2>{person.name}</h2>
-            <h3>biography</h3>
-            <p>{person.biography}</p>
-            <div>
-              <p>personal Info.</p>
+        <div className="container-xl">
+          <div className="d-flex align-items-center">
+            <div className="single-movie-poster ">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+                alt={person.name}
+              />
+            </div>
+            <div className="pl-5">
+              <h2 className="title-lg">{person.name}</h2>
+              <h3 style={{ fontSize: "1.5rem" }}>Biography</h3>
+              <p className="font-sm text-secondary">{person.biography}</p>
+            </div>
+          </div>
 
+          <div className="pt-4">
+            <p className="title-lg">personal Info.</p>
+            <div className="d-flex">
               <div>
-                <p>Known for</p>
-                <h3>{person.known_for_department}</h3>
+                <div className="px-3">
+                  <h3 className="cast-name">Known for</h3>
+                  <p className="text-secondary">
+                    {person.known_for_department}
+                  </p>
+                </div>
+                <div className="px-3 pb-2">
+                  <p className="cast-name">Known Credit</p>
+                  <h3 className="text-secondary">{person.popularity}</h3>
+                </div>
+                <div className="px-3 pb-2">
+                  <p className="cast-name">Gender</p>
+                  <h3 className="text-secondary">
+                    {person.gender === 1 ? "Female" : "Male"}
+                  </h3>
+                </div>
+                <div className="px-3 pb-2">
+                  <p className="cast-name">Birthday</p>
+                  <h3 className="text-secondary">{person.birthday}</h3>
+                </div>
+                <div className="px-3 pb-2">
+                  <p className="cast-name">Place of Birth</p>
+                  <h3 className="text-secondary">{person.place_of_birth}</h3>
+                </div>
               </div>
-              <div>
-                <p>Known Credit</p>
-                <h3>h</h3>
+              <div className="px-3 pb-2">
+                <p className="cast-name">Also Known as</p>
+                {person.also_known_as
+                  ? person.also_known_as.map((known, i) => {
+                      return (
+                        <>
+                          <h3 className="text-secondary" key={i}>
+                            {known}
+                          </h3>
+                        </>
+                      );
+                    })
+                  : "-"}
               </div>
-              <div>
-                <p>Gender</p>
-                <h3>{person.gender === 1 ? "Female" : "Male"}</h3>
-              </div>
-              <div>
-                <p>Birthday</p>
-                <h3>{person.birthday}</h3>
-              </div>
-              <div>
-                <p>Place of Birth</p>
-                <h3>{person.place_of_birth}</h3>
-              </div>
-              <div>
-                <p>Also Known as</p>
-                {/* {person.also_known_as.map((known, i) => {
-                  return <h3 key={i}>{known}</h3>;
-                })} */}
-              </div>
-            </div> 
+            </div>
           </div>
         </div>
       }
-      <h3>Known For</h3>
+      <div className="container-xl pt-5">
+        <h3 className="title-lg">Known For</h3>
+      </div>
+
       <List movieList={personMovies} />
     </div>
   );
