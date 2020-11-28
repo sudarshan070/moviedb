@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { baseURL } from "../utils/api";
 import { API_KEY } from "../utils/api";
 import List from "./List";
+// import Pagination from "./Pagination";
 
 export default function MovieList() {
   const [popularMovie, setPopularMovie] = useState([]);
@@ -13,8 +14,8 @@ export default function MovieList() {
         const popularMovies = await Axios.get(
           `${baseURL}/movie/popular?api_key=${API_KEY}`
         );
-        const movies = popularMovies.data.results;
-        console.log(popularMovies.data, "test is here");
+        const movies = popularMovies.data;
+        console.log(movies, "test is here");
         setPopularMovie(movies);
       } catch (error) {
         console.log(error);
@@ -25,7 +26,7 @@ export default function MovieList() {
 
   return (
     <div>
-      <List movieList={popularMovie} />
+      <List movieList={popularMovie.results} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 import List from "./List";
+import Pagination from "./Pagination";
 
 export default function Person() {
   const [person, setPerson] = useState("");
@@ -22,7 +23,7 @@ export default function Person() {
         const personMovies = await Axios.get(
           `${baseURL}/discover/movie?api_key=${API_KEY}&with_cast=${id}&sort_by=popularity.desc`
         );
-        const personMovie = personMovies.data.results;
+        const personMovie = personMovies.data;
         console.log(personMovies, "personMovie is here");
         setPersonMovie(personMovie);
       } catch (error) {
@@ -83,11 +84,9 @@ export default function Person() {
                 {person.also_known_as
                   ? person.also_known_as.map((known, i) => {
                       return (
-                        <>
-                          <h3 className="text-secondary" key={i}>
-                            {known}
-                          </h3>
-                        </>
+                        <h3 className="text-secondary" key={i}>
+                          {known}
+                        </h3>
                       );
                     })
                   : "-"}
@@ -99,8 +98,8 @@ export default function Person() {
       <div className="container-xl pt-5">
         <h3 className="title-lg">Known For</h3>
       </div>
-
-      <List movieList={personMovies} />
+      <List movieList={personMovies.results} />
+      <Pagination movies={personMovies} />
     </div>
   );
 }
