@@ -3,9 +3,12 @@ import { NavLink } from "react-router-dom";
 
 export function Genre({ genres, handleClick }) {
   return (
-    <div style={{ position: "sticky", top: "0" }}>
+    <div className="genre-p">
       <div className="genre border-right">
-        <h3>Discover</h3>
+        <div className="discover">
+          <h3>Discover</h3>
+        </div>
+
         <NavLink
           activeClassName="active"
           style={{ textDecoration: "none" }}
@@ -27,7 +30,10 @@ export function Genre({ genres, handleClick }) {
         >
           Upcoming
         </NavLink>
-        <h3>Genres</h3>
+        <div className="discover">
+          <h3>Genres</h3>
+        </div>
+
         <>
           {genres.map((genre, i) => {
             return (

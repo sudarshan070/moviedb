@@ -27,7 +27,7 @@ export default function Cast() {
   return (
     <div className="p-5">
       <h2 className="title-lg">Cast and Crew</h2>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between media-d-b">
         <div className="castCrow">
           <p>Cast {casts && casts.cast.length}</p>
           {casts ? (

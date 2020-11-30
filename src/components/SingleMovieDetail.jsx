@@ -17,7 +17,6 @@ function SingleMovieDetail({ movieDetail, credits }) {
           `${baseURL}/movie/${id}/videos?api_key=${API_KEY}`
         );
         const trailerData = trailers.data;
-        console.log(trailerData, "trailers");
         setTrailer(trailerData);
       } catch (error) {
         console.log(error);
@@ -29,7 +28,7 @@ function SingleMovieDetail({ movieDetail, credits }) {
   return (
     <>
       {movieDetail ? (
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center media-d-b">
           <div className="single-movie-poster">
             <img
               className="movie-poser"
@@ -38,7 +37,7 @@ function SingleMovieDetail({ movieDetail, credits }) {
             />
           </div>
 
-          <div className="pl-5">
+          <div className="pl-5 media-p-1">
             <p className="title-lg">{movieDetail.title}</p>
             <div className="text-secondary">
               <small className="pr-1">{movieDetail.release_date}</small>

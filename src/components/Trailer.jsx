@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import TrailerList from "./TrailerList";
 
 export default function Trailer({ trailers }) {
-  console.log(trailers, "in the house");
+
   let trailer = trailers.map(function (trailer) {
     return (
       <Col xs={5} sm={3} md={2} key={trailer.id}>

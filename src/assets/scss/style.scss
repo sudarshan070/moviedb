@@ -100,6 +100,10 @@ body {
 }
 
 // genre
+.genre-p {
+  position: sticky;
+  top: 0;
+}
 .genre {
   width: 16rem;
   display: flex;
@@ -122,6 +126,9 @@ body {
       border: 1px solid #9e9e9e;
     }
   }
+}
+.discover {
+  width: 100%;
 }
 
 .active {

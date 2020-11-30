@@ -47,7 +47,7 @@ function App() {
   return (
     < BrowserRouter >
       <Header />
-      <div className='d-flex'>
+      <div className='d-flex media-d-b'>
         <Genre handleClick={handleClick} genres={genres} />
         <Switch>
           <Route exact path='/'  >

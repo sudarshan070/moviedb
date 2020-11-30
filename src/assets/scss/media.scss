@@ -6,4 +6,37 @@
       margin: 0 auto;
     }
   }
+  .media-d-b {
+    display: block !important;
+  }
+  .genre-p {
+    position: static !important;
+    .genre {
+      width: 100%;
+      border: none !important;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.4rem;
+      flex-direction: row;
+      h3 {
+        font-size: 1.3rem;
+      }
+      a {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid #cccccc;
+        margin-left: 0.3rem;
+      }
+    }
+  }
+  .media-p-1 {
+    padding: 0.8rem !important;
+  }
+  .title-lg {
+    font-size: 1rem !important;
+  }
+  .cast-container {
+    display: none !important;
+  }
 }

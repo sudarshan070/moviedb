@@ -16,7 +16,7 @@ export default function Popular() {
           `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
         );
         const movies = popularMovies.data;
-        console.log(movies, "test is here");
+
         setPopularMovie(movies);
       } catch (error) {
         console.log(error);
