@@ -16,7 +16,6 @@ export default function Cast() {
           `${baseURL}/movie/${id}/credits?api_key=${API_KEY}`
         );
         const credit = credits.data;
-        console.log(credit, "credits");
         setCasts(credit);
       } catch (error) {
         console.log(error);
@@ -26,11 +25,10 @@ export default function Cast() {
   }, [id]);
 
   return (
-    <div className="pt-5">
-      <h2>Cast and Crew</h2>
-      {console.log(casts)}
-      <div className="d-flex">
-        <div>
+    <div className="p-5">
+      <h2 className="title-lg">Cast and Crew</h2>
+      <div className="d-flex justify-content-between">
+        <div className="castCrow">
           <p>Cast {casts && casts.cast.length}</p>
           {casts ? (
             casts.cast.map((cast, i) => {
@@ -38,16 +36,16 @@ export default function Cast() {
                 <NavLink
                   to={`/person/${cast.id}`}
                   key={i}
-                  className="d-flex"
+                  className="d-flex align-items-center cast-profile mb-3"
                   style={{ textDecoration: "none" }}
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                     alt={cast.name}
                   />
-                  <div>
-                    <h3>{cast.name}</h3>
-                    <p>{cast.character}</p>
+                  <div className="pl-2">
+                    <h3 className="cast-name">{cast.name}</h3>
+                    <p className="text-secondary">{cast.character}</p>
                   </div>
                 </NavLink>
               );
@@ -56,12 +54,15 @@ export default function Cast() {
             <Loading />
           )}
         </div>
-        <div>
+        <div className="castCrow">
           <p>Crew {casts && casts.crew.length}</p>
           {casts ? (
             casts.crew.map((crew, i) => {
               return (
-                <div key={i}>
+                <div
+                  className="d-flex align-items-center cast-profile mb-3"
+                  key={i}
+                >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${crew.profile_path}`}
                     alt={crew.name}

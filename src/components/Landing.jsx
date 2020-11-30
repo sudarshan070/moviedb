@@ -1,15 +1,11 @@
 import React from "react";
-import { Genre } from "./Genre";
-import MovieList from "./MovieList";
+import Popular from "./Popular";
 
 export default function Landing() {
   return (
     <main className="d-flex">
-      <aside>
-        <Genre />
-      </aside>
       <section>
-        <MovieList />
+        <Popular />
       </section>
     </main>
   );

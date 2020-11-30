@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 import List from "./List";
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 
 export default function Person() {
   const [person, setPerson] = useState("");
@@ -17,14 +17,12 @@ export default function Person() {
           `${baseURL}/person/${id}?api_key=${API_KEY}`
         );
         const person = persons.data;
-        console.log(person, "persons");
         setPerson(person);
 
         const personMovies = await Axios.get(
           `${baseURL}/discover/movie?api_key=${API_KEY}&with_cast=${id}&sort_by=popularity.desc`
         );
         const personMovie = personMovies.data;
-        console.log(personMovies, "personMovie is here");
         setPersonMovie(personMovie);
       } catch (error) {
         console.log(error);
@@ -99,7 +97,6 @@ export default function Person() {
         <h3 className="title-lg">Known For</h3>
       </div>
       <List movieList={personMovies.results} />
-      <Pagination movies={personMovies} />
     </div>
   );
 }

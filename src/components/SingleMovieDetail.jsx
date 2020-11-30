@@ -1,10 +1,31 @@
-import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams, withRouter } from "react-router-dom";
+import { API_KEY, baseURL } from "../utils/api";
 import Loader from "./Loading";
 import Rating from "./Rating";
+import Trailer from "./Trailer";
 
 function SingleMovieDetail({ movieDetail, credits }) {
-  console.log(movieDetail, "movieDetail");
+  const [trailer, setTrailer] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchCastData = async () => {
+      try {
+        const trailers = await Axios.get(
+          `${baseURL}/movie/${id}/videos?api_key=${API_KEY}`
+        );
+        const trailerData = trailers.data;
+        console.log(trailerData, "trailers");
+        setTrailer(trailerData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    return fetchCastData();
+  }, [id]);
+
   return (
     <>
       {movieDetail ? (
@@ -47,9 +68,9 @@ function SingleMovieDetail({ movieDetail, credits }) {
             <h3 className="movie-tagline text-secondary">
               {movieDetail.tagline}
             </h3>
+            <Trailer trailers={trailer.results.slice(0, 1)} />
             <h2 style={{ fontSize: "1.5rem" }}>overview</h2>
             <p>{movieDetail.overview}</p>
-            <p></p>
           </div>
         </div>
       ) : (
@@ -62,10 +83,12 @@ function SingleMovieDetail({ movieDetail, credits }) {
             {credits
               ? credits.cast.map((cast, i) => {
                   return (
-                    <div className="profile-card shadow-sm mx-2 my-1 border rounded">
+                    <div
+                      key={i}
+                      className="profile-card shadow-sm mx-2 my-1 border rounded"
+                    >
                       <NavLink
                         to={`/person/${cast.id}`}
-                        key={i}
                         style={{ textDecoration: "none" }}
                       >
                         <div className="profile-img ">
@@ -94,7 +117,7 @@ function SingleMovieDetail({ movieDetail, credits }) {
                 fontSize: "1.25rem",
               }}
             >
-              👉🏻  Full Cast & Crew
+              👉🏻 Full Cast & Crew
             </NavLink>
           </div>
         </div>

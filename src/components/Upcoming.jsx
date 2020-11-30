@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_KEY, baseURL } from "../utils/api";
 import List from "./List";
+
 export default function TopRated() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
 
