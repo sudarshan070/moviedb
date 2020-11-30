@@ -13,7 +13,6 @@ export default function TopRated() {
           `${baseURL}/movie/upcoming?api_key=${API_KEY}`
         );
         const movies = upcomingMovies.data;
-        console.log(movies, "test is here");
         setUpcomingMovies(movies);
       } catch (error) {
         console.log(error);
