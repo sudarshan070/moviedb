@@ -3,7 +3,7 @@ import "../assets/scss/loader.scss";
 
 const Loader = () => {
   return (
-    <div className="flex center">
+    <div className="center">
       <div className="loadingspinner"></div>
     </div>
   );

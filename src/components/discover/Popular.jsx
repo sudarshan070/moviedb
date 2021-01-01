@@ -1,9 +1,9 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import { baseURL } from "../utils/api";
-import { API_KEY } from "../utils/api";
-import List from "./List";
-import Pagination from "./Pagination";
+import { baseURL } from "../../utils/api";
+import { API_KEY } from "../../utils/api";
+import List from "../List";
+import Pagination from "../pagination/Pagination";
 
 export default function Popular() {
   const [popularMovie, setPopularMovie] = useState([]);
@@ -28,7 +28,11 @@ export default function Popular() {
   return (
     <div>
       <List movieList={popularMovie.results} />
-      <Pagination nextPreviousPage={popularMovie} setPage={setPage} />
+      <Pagination
+        nextPreviousPage={popularMovie}
+        setPage={setPage}
+        page={page}
+      />
     </div>
   );
 }

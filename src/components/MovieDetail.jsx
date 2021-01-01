@@ -18,7 +18,6 @@ export default function MovieDetail() {
           `${baseURL}/movie/${id}/credits?api_key=${API_KEY}`
         );
         const credit = credits.data;
-
         setCredits(credit);
 
         const movieList = await Axios.get(

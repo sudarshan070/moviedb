@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export function Genre({ genres, handleClick }) {
+export default function Genre({ genres, handleClick }) {
   return (
     <div className="genre-p">
       <div className="genre border-right">
@@ -38,6 +38,7 @@ export function Genre({ genres, handleClick }) {
           {genres.map((genre, i) => {
             return (
               <NavLink
+                key={i}
                 activeClassName="active"
                 style={{ textDecoration: "none" }}
                 to={`/genre/${genre.name}`}
