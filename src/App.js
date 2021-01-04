@@ -12,8 +12,6 @@ import TopRated from './components/discover/TopRated';
 import Upcoming from './components/discover/Upcoming';
 import { API_KEY, baseURL } from './utils/api';
 
-
-
 function App() {
   const [genres, setGenre] = useState([]);
   const [discoverMovies, setDiscoverMovies] = useState([]);

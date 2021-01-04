@@ -1,5 +1,5 @@
 import React from "react";
-import { URL_YOUTUBE } from "../utils/api";
+import { URL_YOUTUBE } from "../../utils/api";
 
 export default function TrailerList({ trailer }) {
   return (

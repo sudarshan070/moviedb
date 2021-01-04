@@ -4,7 +4,7 @@ import { NavLink, useParams, withRouter } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 import Loader from "./Loading";
 import Rating from "./Rating";
-import Trailer from "./Trailer";
+import Trailer from "./trailar/Trailer";
 
 function SingleMovieDetail({ movieDetail, credits }) {
   console.log(movieDetail);
