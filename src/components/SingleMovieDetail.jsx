@@ -7,7 +7,6 @@ import Rating from "./Rating";
 import Trailer from "./trailar/Trailer";
 
 function SingleMovieDetail({ movieDetail, credits }) {
-  console.log(movieDetail);
   const [trailer, setTrailer] = useState("");
   const { id } = useParams();
 

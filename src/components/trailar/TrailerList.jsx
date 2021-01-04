@@ -7,7 +7,7 @@ export default function TrailerList({ trailer }) {
       <iframe
         title={`${URL_YOUTUBE} trailer`}
         src={`${URL_YOUTUBE} trailer`}
-        frameborder="0"
+        frameBorder="0"
         allowFullScreen
       />
     </div>

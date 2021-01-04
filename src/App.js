@@ -28,16 +28,16 @@ function App() {
         const { genres } = genre.data;
         setGenre(genres);
         const movies = await Axios.get(
-          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${id}&sort_by=popularity.desc`
+          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${id}&page=${page}&sort_by=popularity.desc`
         );
-        const movie = movies.data.results;
+        const movie = movies.data;
         setDiscoverMovies(movie);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, [id]);
+  }, [id, page]);
 
 
   useEffect(() => {
@@ -47,7 +47,6 @@ function App() {
           `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
         );
         const movies = popularMovies.data;
-
         setPopularMovie(movies);
       } catch (error) {
         console.log(error);
@@ -62,7 +61,7 @@ function App() {
 
   return (
     < BrowserRouter >
-      <Header />
+      <Header popularMovie={popularMovie} />
       <div className='d-flex media-d-b'>
         <Genre handleClick={handleClick} genres={genres} />
         <Switch>
@@ -75,7 +74,7 @@ function App() {
           <Route exact path='/movie/:id' component={MovieDetail} />
           <Route exact path='/movie/:id/cast' component={Cast} />
           <Route exact path='/person/:id' component={Person} />
-          <Route exact path='/genre/:name' render={() => <GenreMovieList discoverMovies={discoverMovies} />} />
+          <Route exact path='/genre/:name' render={() => <GenreMovieList discoverMovies={discoverMovies} page={page} setPage={setPage} />} />
         </Switch>
       </div>
     </BrowserRouter>

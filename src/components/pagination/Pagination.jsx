@@ -5,6 +5,7 @@ const Pagination = ({ nextPreviousPage, setPage, page }) => {
     let pageCount = (page += 1);
     setPage(pageCount);
   };
+
   const previousPage = (page) => {
     let previousPageCount = (page -= 1);
     setPage(previousPageCount);
@@ -20,10 +21,14 @@ const Pagination = ({ nextPreviousPage, setPage, page }) => {
         >{`⬅️ ${nextPreviousPage.page - 1}  page`}</button>
       )}
 
-      <button
-        className="pagination-btn float-right"
-        onClick={() => nextPage(nextPreviousPage.page)}
-      >{`${nextPreviousPage.page + 1}  page ➡️`}</button>
+      {page >= nextPreviousPage.total_pages ? (
+        ""
+      ) : (
+        <button
+          className="pagination-btn float-right"
+          onClick={() => nextPage(nextPreviousPage.page)}
+        >{`${nextPreviousPage.page + 1}  page ➡️`}</button>
+      )}
     </div>
   );
 };

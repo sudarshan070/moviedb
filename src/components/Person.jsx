@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 import List from "./List";
-// import Pagination from "./Pagination";
+import Pagination from "./pagination/Pagination";
 
 export default function Person() {
   const [person, setPerson] = useState("");
   const [personMovies, setPersonMovie] = useState([]);
   const { id } = useParams();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchCastData = async () => {
@@ -20,7 +21,7 @@ export default function Person() {
         setPerson(person);
 
         const personMovies = await Axios.get(
-          `${baseURL}/discover/movie?api_key=${API_KEY}&with_cast=${id}&sort_by=popularity.desc`
+          `${baseURL}/discover/movie?api_key=${API_KEY}&with_cast=${id}&page=${page}&sort_by=popularity.desc`
         );
         const personMovie = personMovies.data;
         setPersonMovie(personMovie);
@@ -29,7 +30,7 @@ export default function Person() {
       }
     };
     return fetchCastData();
-  }, [id]);
+  }, [id, page]);
   return (
     <div className="p-top-7">
       {
@@ -97,6 +98,11 @@ export default function Person() {
         <h3 className="title-lg">Known For</h3>
       </div>
       <List movieList={personMovies.results} />
+      <Pagination
+        setPage={setPage}
+        page={page}
+        nextPreviousPage={personMovies}
+      />
     </div>
   );
 }
