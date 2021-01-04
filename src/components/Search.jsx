@@ -1,14 +1,34 @@
 // import Axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { API_KEY, baseURL } from "../utils/api";
+import { withRouter } from "react-router-dom";
 
-export default function Search() {
+function Search(props) {
   const [searchMovies, setSearchMovies] = useState("");
 
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (searchMovies.length === 0) {
+      return;
+    }
+    setSearchMovies("");
+    props.history.push(`/search/${searchMovies}`);
+  };
+
   return (
     <div>
-      <input type="text" className="form-control" />
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={(e) => setSearchMovies(e.target.value)}
+          value={searchMovies}
+          type="text"
+          className="form-control"
+          placeholder="search movie..."
+        />
+        <button type="submit">Search</button>
+      </form>
     </div>
   );
 }
+
+export default withRouter(Search);

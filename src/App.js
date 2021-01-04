@@ -16,6 +16,8 @@ function App() {
   const [genres, setGenre] = useState([]);
   const [discoverMovies, setDiscoverMovies] = useState([]);
   const [id, setId] = useState(1);
+  const [popularMovie, setPopularMovie] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function fetchData() {
@@ -37,6 +39,23 @@ function App() {
     fetchData();
   }, [id]);
 
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const popularMovies = await Axios.get(
+          `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
+        );
+        const movies = popularMovies.data;
+
+        setPopularMovie(movies);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [page]);
+
   const handleClick = (id) => {
     setId(id);
   };
@@ -50,7 +69,7 @@ function App() {
           <Route exact path='/'  >
             <Redirect to='/popular' />
           </Route>
-          <Route exact path='/popular' component={Landing} />
+          <Route exact path='/popular' render={() => <Landing popularMovie={popularMovie} page={page} setPage={setPage} />} />
           <Route exact path='/top-rated' component={TopRated} />
           <Route exact path='/upcoming' component={Upcoming} />
           <Route exact path='/movie/:id' component={MovieDetail} />

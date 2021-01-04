@@ -1,30 +1,8 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
-import { baseURL } from "../../utils/api";
-import { API_KEY } from "../../utils/api";
+import React from "react";
 import List from "../List";
 import Pagination from "../pagination/Pagination";
 
-export default function Popular() {
-  const [popularMovie, setPopularMovie] = useState([]);
-  const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const popularMovies = await Axios.get(
-          `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
-        );
-        const movies = popularMovies.data;
-
-        setPopularMovie(movies);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, [page]);
-
+export default function Popular({ popularMovie, page, setPage }) {
   return (
     <div>
       <List movieList={popularMovie.results} />
