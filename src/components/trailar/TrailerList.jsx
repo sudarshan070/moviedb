@@ -1,5 +1,5 @@
 import React from "react";
-import { URL_YOUTUBE } from "../utils/api";
+import { URL_YOUTUBE } from "../../utils/api";
 
 export default function TrailerList({ trailer }) {
   return (
@@ -7,7 +7,7 @@ export default function TrailerList({ trailer }) {
       <iframe
         title={`${URL_YOUTUBE} trailer`}
         src={`${URL_YOUTUBE} trailer`}
-        frameborder="0"
+        frameBorder="0"
         allowFullScreen
       />
     </div>

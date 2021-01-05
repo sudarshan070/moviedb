@@ -9,6 +9,10 @@ export default function Upcoming() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    document.title = `MovieDB | Upcoming Movies`;
+  });
+
+  useEffect(() => {
     async function fetchData() {
       try {
         const upcomingMovies = await Axios.get(

@@ -1,7 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
-
 import { useParams, NavLink } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
 

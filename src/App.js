@@ -12,12 +12,13 @@ import TopRated from './components/discover/TopRated';
 import Upcoming from './components/discover/Upcoming';
 import { API_KEY, baseURL } from './utils/api';
 
-
-
 function App() {
   const [genres, setGenre] = useState([]);
   const [discoverMovies, setDiscoverMovies] = useState([]);
-  const [id, setId] = useState(1);
+  const [genresId, setGenresId] = useState(1);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -28,37 +29,53 @@ function App() {
         const { genres } = genre.data;
         setGenre(genres);
         const movies = await Axios.get(
-          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${id}&sort_by=popularity.desc`
+          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${genresId}&page=${page}&sort_by=popularity.desc`
         );
-        const movie = movies.data.results;
+        const movie = movies.data;
         setDiscoverMovies(movie);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, [id]);
+  }, [genresId, page]);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const popularMovies = await Axios.get(
+          `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
+        );
+        const movies = popularMovies.data;
+        setPopularMovies(movies);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [page]);
 
   const handleClick = (id) => {
-    setId(id);
+    setGenresId(id);
   };
 
   return (
     < BrowserRouter >
-      <Header />
+      <Header popularMovie={popularMovies} />
       <div className='d-flex media-d-b'>
         <Genre handleClick={handleClick} genres={genres} />
         <Switch>
           <Route exact path='/'  >
             <Redirect to='/popular' />
           </Route>
-          <Route exact path='/popular' component={Landing} />
+          <Route exact path='/popular' render={() => <Landing popularMovies={popularMovies} page={page} setPage={setPage} />} />
           <Route exact path='/top-rated' component={TopRated} />
           <Route exact path='/upcoming' component={Upcoming} />
           <Route exact path='/movie/:id' component={MovieDetail} />
           <Route exact path='/movie/:id/cast' component={Cast} />
           <Route exact path='/person/:id' component={Person} />
-          <Route exact path='/genre/:name' render={() => <GenreMovieList discoverMovies={discoverMovies} />} />
+          <Route exact path='/genre/:name' render={() => <GenreMovieList discoverMovies={discoverMovies} page={page} setPage={setPage} />} />
         </Switch>
       </div>
     </BrowserRouter>
