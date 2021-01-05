@@ -11,6 +11,10 @@ function SingleMovieDetail({ movieDetail, credits }) {
   const { id } = useParams();
 
   useEffect(() => {
+    document.title = `Movie | ${movieDetail.title}`;
+  });
+
+  useEffect(() => {
     const fetchCastData = async () => {
       try {
         const trailers = await Axios.get(

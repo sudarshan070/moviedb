@@ -15,9 +15,10 @@ import { API_KEY, baseURL } from './utils/api';
 function App() {
   const [genres, setGenre] = useState([]);
   const [discoverMovies, setDiscoverMovies] = useState([]);
-  const [id, setId] = useState(1);
-  const [popularMovie, setPopularMovie] = useState([]);
+  const [genresId, setGenresId] = useState(1);
+  const [popularMovies, setPopularMovies] = useState([]);
   const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -28,7 +29,7 @@ function App() {
         const { genres } = genre.data;
         setGenre(genres);
         const movies = await Axios.get(
-          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${id}&page=${page}&sort_by=popularity.desc`
+          `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${genresId}&page=${page}&sort_by=popularity.desc`
         );
         const movie = movies.data;
         setDiscoverMovies(movie);
@@ -37,7 +38,7 @@ function App() {
       }
     }
     fetchData();
-  }, [id, page]);
+  }, [genresId, page]);
 
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
           `${baseURL}/movie/popular?api_key=${API_KEY}&page=${page}`
         );
         const movies = popularMovies.data;
-        setPopularMovie(movies);
+        setPopularMovies(movies);
       } catch (error) {
         console.log(error);
       }
@@ -56,19 +57,19 @@ function App() {
   }, [page]);
 
   const handleClick = (id) => {
-    setId(id);
+    setGenresId(id);
   };
 
   return (
     < BrowserRouter >
-      <Header popularMovie={popularMovie} />
+      <Header popularMovie={popularMovies} />
       <div className='d-flex media-d-b'>
         <Genre handleClick={handleClick} genres={genres} />
         <Switch>
           <Route exact path='/'  >
             <Redirect to='/popular' />
           </Route>
-          <Route exact path='/popular' render={() => <Landing popularMovie={popularMovie} page={page} setPage={setPage} />} />
+          <Route exact path='/popular' render={() => <Landing popularMovies={popularMovies} page={page} setPage={setPage} />} />
           <Route exact path='/top-rated' component={TopRated} />
           <Route exact path='/upcoming' component={Upcoming} />
           <Route exact path='/movie/:id' component={MovieDetail} />

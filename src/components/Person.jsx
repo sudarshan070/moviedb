@@ -12,6 +12,10 @@ export default function Person() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    document.title = `${person.name}`;
+  });
+
+  useEffect(() => {
     const fetchCastData = async () => {
       try {
         const persons = await Axios.get(

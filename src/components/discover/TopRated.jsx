@@ -9,6 +9,10 @@ export default function TopRated() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    document.title = `MovieDB | Top Rated Movies`;
+  });
+
+  useEffect(() => {
     async function fetchData() {
       try {
         const topRatedMovies = await Axios.get(
