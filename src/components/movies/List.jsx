@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Loader from "./Loading";
-import Rating from "./Rating";
+import Loader from "../Loading";
+import Rating from "../Rating";
 
 export default function List({ movieList }) {
   return (

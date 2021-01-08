@@ -1,10 +1,10 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, withRouter } from "react-router-dom";
-import { API_KEY, baseURL } from "../utils/api";
-import Loader from "./Loading";
-import Rating from "./Rating";
-import Trailer from "./trailar/Trailer";
+import { API_KEY, baseURL } from "../../utils/api";
+import Loader from "../Loading";
+import Rating from "../Rating";
+import Trailer from "../trailar/Trailer";
 
 function SingleMovieDetail({ movieDetail, credits }) {
   const [trailer, setTrailer] = useState("");

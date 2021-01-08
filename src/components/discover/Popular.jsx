@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import List from "../List";
+import List from "../movies/List";
 import Pagination from "../pagination/Pagination";
 
 export default function Popular({ popularMovies, page, setPage }) {
