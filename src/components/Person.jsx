@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY, baseURL } from "../utils/api";
-import List from "./List";
+import List from "./movies/List";
 import Pagination from "./pagination/Pagination";
 
 export default function Person() {

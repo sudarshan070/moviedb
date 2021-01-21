@@ -1,6 +1,7 @@
 import React from "react";
 
 const Pagination = ({ nextPreviousPage, setPage, page }) => {
+   
   const nextPage = (page) => {
     let pageCount = (page += 1);
     setPage(pageCount);

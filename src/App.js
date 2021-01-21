@@ -2,11 +2,11 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Cast from './components/Cast';
-import Genre from './components/Genre';
-import GenreMovieList from './components/GenreMovieList';
+import Genre from './components/genre/Genre';
+import GenreMovieList from './components/genre/GenreMovieList';
 import Header from './components/Header'
 import Landing from './components/Landing';
-import MovieDetail from './components/MovieDetail';
+import MovieDetail from './components/movies/MovieDetail';
 import Person from './components/Person';
 import TopRated from './components/discover/TopRated';
 import Upcoming from './components/discover/Upcoming';

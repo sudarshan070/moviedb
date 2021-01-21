@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Search from "./Search";
+// import Search from "./Search";
 
 export default function Header({ popularMovie }) {
   return (
@@ -11,9 +11,7 @@ export default function Header({ popularMovie }) {
             <h1>MovieDB</h1>
           </NavLink>
         </nav>
-        <div>
-          <Search popularMovie={popularMovie} />
-        </div>
+        <div>{/* <Search popularMovie={popularMovie} /> */}</div>
       </div>
     </header>
   );

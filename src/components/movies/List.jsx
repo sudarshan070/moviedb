@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Loader from "./Loading";
-import Rating from "./Rating";
+import Loader from "../Loading";
+import Rating from "../Rating";
 
 export default function List({ movieList }) {
   return (
@@ -14,7 +14,7 @@ export default function List({ movieList }) {
               style={{ textDecoration: "none", color: "#000" }}
               to={`/movie/${id}`}
               key={i}
-              className="m-4 single-movie text-center "
+              className="m-4 single-movie text-center shadow"
             >
               <img
                 className="movie-poser"

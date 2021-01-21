@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import List from "./List";
-import Pagination from "./pagination/Pagination";
+import List from "../movies/List";
+import Pagination from "../pagination/Pagination";
 
 export default function GenreMovieList({ discoverMovies, page, setPage }) {
   useEffect(() => {
